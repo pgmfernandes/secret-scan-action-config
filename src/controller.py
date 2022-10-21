@@ -38,4 +38,4 @@ class ConfigRepositoryController:
                     os.environ['PAULA'] = str(value)
                     # print(export_command)
                     # print(export_command)
-                    # print(f"::set-output name={key}::{str(value)}")
+                    print(f"::set-output name={key}::{str(value)}")
