@@ -19,10 +19,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-python@v4 
-      name: Setting python version
-      with:
-        python-version: 'pypy3.9'
         
     - run: pip install -r $GITHUB_ACTION_PATH/requirements.txt
       shell: bash
