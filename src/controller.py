@@ -35,6 +35,7 @@ class ConfigRepositoryController:
                     value = task_to_export.custom_payload[key]
                     export_command = "echo \"{" + key + "}={" + str(value) + "}\" >> $GITHUB_OUTPUT"
                     os.system(export_command)
+                    os.environ[key] = str(value)
                     # print(export_command)
                     # print(export_command)
                     # print(f"::set-output name={key}::{str(value)}")
