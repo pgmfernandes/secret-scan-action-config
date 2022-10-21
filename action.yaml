@@ -30,11 +30,14 @@ runs:
       
     - name: Executing action
       id: executing_action
+      env:
+        TRIVY_SECRET_CHECK: ''
+        SEMGREP_CHECK: ''
+        GITLEAKS_CHECK: ''
       run: | 
         export GH_TOKEN=${{ inputs.GH_TOKEN }}
         python $GITHUB_ACTION_PATH/src/main.py
         echo "TRIVY_SECRET_CHECK=$TRIVY_SECRET_CHECK" >> $GITHUB_OUTPUT
+        echo "SEMGREP_CHECK=$SEMGREP_CHECK" >> $GITHUB_OUTPUT
         echo "GITLEAKS_CHECK=$GITLEAKS_CHECK" >> $GITHUB_OUTPUT
-        echo $PAULA
-        echo ${{env.PAULA}}
       shell: bash
