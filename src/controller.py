@@ -29,12 +29,15 @@ class ConfigRepositoryController:
     @staticmethod
     def export_output(task: ConfigPipeline):
         task_to_export_array = [task.semgrep, task.gitleaks, task.trivy]
-        for task_to_export in task_to_export_array:
-            if task_to_export is not None:
-                for key in task_to_export.custom_payload:
-                    value = task_to_export.custom_payload[key]
-                    # export_command = "echo \"{" + key + "}={" + str(value) + "}\" >> $GITHUB_OUTPUT"
-                    os.environ[key] = str(value)
-                    # print(export_command)
-                    # print(export_command)
-                    # print(f"::set-output name={key}::{str(value)}")
+        GITHUB_OUTPUT = os.getenv('GITHUB_OUTPUT')
+        with open(GITHUB_OUTPUT, "a") as myfile:
+            for task_to_export in task_to_export_array:
+                if task_to_export is not None:
+                    for key in task_to_export.custom_payload:
+                        value = task_to_export.custom_payload[key]
+                        # export_command = "echo \"{" + key + "}={" + str(value) + "}\" >> $GITHUB_OUTPUT"
+                        # os.environ[key] = str(value)
+                        myfile.write(f"{key}={str(value)}\n")
+                        # print(export_command)
+                        # print(export_command)
+                        # print(f"::set-output name={key}::{str(value)}")
