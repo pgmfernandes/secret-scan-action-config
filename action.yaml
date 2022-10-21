@@ -1,0 +1,41 @@
+name: 'Scan github action'
+description: 'A github action to scan repositories Dockerfile'
+inputs:
+  GH_TOKEN:
+    description: 'A Github PAT'
+    required: true
+  SECURE_PIPELINE_TASK:
+    description: Name of the security task
+    required: false
+    default: sast_trivy
+
+outputs:
+  enabled:
+    description: 'Enabled security check'
+    value: ${{ steps.executing_action.outputs.enabled }}
+  threshold:
+    description: 'Threhold to break pipeline'
+    value: ${{ steps.executing_action.outputs.threshold }}
+  organization:
+    description: 'Threhold to break pipeline'
+    value: ${{ steps.executing_action.outputs.organization }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v4 
+      name: Setting python version
+      with:
+        python-version: 'pypy3.9'
+        
+    - run: pip install -r $GITHUB_ACTION_PATH/requirements.txt
+      shell: bash
+      name: Installing dependencies
+      
+    - name: Executing action
+      id: executing_action
+      run: | 
+        export GH_TOKEN=${{ inputs.GH_TOKEN }}
+        export SECURE_PIPELINE_TASK=${{ inputs.SECURE_PIPELINE_TASK }}
+        python $GITHUB_ACTION_PATH/src/main.py
+      shell: bash
