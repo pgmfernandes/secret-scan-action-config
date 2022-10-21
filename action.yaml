@@ -35,10 +35,10 @@ runs:
         python $GITHUB_ACTION_PATH/src/main.py
       shell: bash
 
-    - name: Exporting variables
-      id: exporting-variables
+    - name: Exporting output
+      id: exporting-output
       run: | 
-        echo "TRIVY_SECRET_CHECK=$(TRIVY_SECRET_CHECK)" >> $GITHUB_OUTPUT
-        echo "GITLEAKS_CHECK=$(GITLEAKS_CHECK)" >> $GITHUB_OUTPUT
-        echo "SEMGREP_CHECK=$(SEMGREP_CHECK)" >> $GITHUB_OUTPUT
+        echo "TRIVY_SECRET_CHECK=$TRIVY_SECRET_CHECK" >> $GITHUB_OUTPUT
+        echo "GITLEAKS_CHECK=$GITLEAKS_CHECK" >> $GITHUB_OUTPUT
+        echo "SEMGREP_CHECK=$SEMGREP_CHECK" >> $GITHUB_OUTPUT
       shell: bash
