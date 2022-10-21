@@ -30,10 +30,6 @@ runs:
       
     - name: Executing action
       id: executing_action
-      env:
-        TRIVY_SECRET_CHECK: 'True'
-        SEMGREP_CHECK: 'True'
-        GITLEAKS_CHECK: 'True'
       run: | 
         export GH_TOKEN=${{ inputs.GH_TOKEN }}
         python $GITHUB_ACTION_PATH/src/main.py
