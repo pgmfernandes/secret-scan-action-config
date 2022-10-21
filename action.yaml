@@ -35,4 +35,5 @@ runs:
         python $GITHUB_ACTION_PATH/src/main.py
         echo "TRIVY_SECRET_CHECK=$TRIVY_SECRET_CHECK" >> $GITHUB_OUTPUT
         echo "GITLEAKS_CHECK=$GITLEAKS_CHECK" >> $GITHUB_OUTPUT
+        echo "GITLEAKS_CHECK=$GITLEAKS_CHECK"
       shell: bash
