@@ -37,4 +37,4 @@ class ConfigRepositoryController:
                     os.system(export_command)
                     print(export_command)
                     # print(export_command)
-                    print(f"::set-output name={key}::{str(value)}")
+                    # print(f"::set-output name={key}::{str(value)}")
