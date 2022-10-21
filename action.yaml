@@ -4,21 +4,17 @@ inputs:
   GH_TOKEN:
     description: 'A Github PAT'
     required: true
-  SECURE_PIPELINE_TASK:
-    description: Name of the security task
-    required: false
-    default: sast_trivy
 
 outputs:
-  enabled:
-    description: 'Enabled security check'
-    value: ${{ steps.executing_action.outputs.enabled }}
-  threshold:
-    description: 'Threhold to break pipeline'
-    value: ${{ steps.executing_action.outputs.threshold }}
-  organization:
-    description: 'Threhold to break pipeline'
-    value: ${{ steps.executing_action.outputs.organization }}
+  SEMGREP_CHECK:
+    description: 'check of sempgre'
+    value: ${{ steps.executing_action.outputs.SEMGREP_CHECK }}
+  GITLEAKS_CHECK:
+    description: 'check of gitleaks'
+    value: ${{ steps.executing_action.outputs.GITLEAKS_CHECK }}
+  TRIVY_SECRET_CHECK:
+    description: 'check of trivy secret'
+    value: ${{ steps.executing_action.outputs.TRIVY_SECRET_CHECK }}
 
 runs:
   using: "composite"
